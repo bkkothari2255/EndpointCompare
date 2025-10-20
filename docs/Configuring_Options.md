@@ -10,7 +10,12 @@ This guide explains how to configure the options page in the **EndpointCompare**
 ## Configuring Domain Patterns
 The options page allows you to specify domain patterns to filter browser tabs. These patterns determine which tabs appear in the popup’s dropdown menus (`Select a tab or enter URL`). You can use:
 - **Regular Expressions (Regex)**: To match specific domains or subdomains (e.g., `.*\.example\.com`).
+
 - **Wildcard (`*`)**: To include all active tabs in the current Chrome window.
+ 
+![WildCard](../images/wildcard-config.png)
+   
+![Options Dropdown From WildCard](../images/wildcard-options-demo.png)
 
 ### Steps
 1. In the options page, locate the text area labeled for domain patterns.
