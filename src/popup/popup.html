@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EndpointCompare</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="../assets/styles/diff.css">
+</head>
+<body>
+  <div class="container">
+    <h3>Compare API Endpoints</h3>
+    <div class="input-group">
+      <input type="text" id="endpoint1" placeholder="Enter first API endpoint">
+      <input type="text" id="endpoint2" placeholder="Enter second API endpoint">
+      <button id="compareBtn">Compare</button>
+    </div>
+    <div class="response-container">
+      <div id="response1" class="response"></div>
+      <div id="response2" class="response"></div>
+    </div>
+    <div id="error" class="error"></div>
+  </div>
+  <script src="../assets/diff.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
