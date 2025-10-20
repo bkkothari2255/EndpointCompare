@@ -16,6 +16,7 @@ EndpointCompare simplifies debugging and validation by making it easy to compare
 
 
 ### Core Features (MVP)
+- **Tab Selection**: Choose API endpoints from dropdowns listing open tabs with API-like URLs.
 - **Endpoint Input**: Enter two API endpoint URLs manually or save them from webpages via context menu.
 - **Response Comparison**: Fetch and display JSON/XML responses side-by-side, with differences highlighted using jsdiff.
 - **Auto-Detect URLs**: Right-click API URLs on webpages (e.g., from documentation) to save for comparison.

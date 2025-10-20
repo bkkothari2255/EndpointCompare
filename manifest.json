@@ -7,8 +7,11 @@
     "contextMenus",
     "storage",
     "activeTab",
-    "scripting"
+    "scripting",
+    "tabs",
+    "clipboardWrite"
   ],
+  "options_page": "src/options/options.html",
   "background": {
     "service_worker": "src/background.js"
   },

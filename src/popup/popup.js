@@ -2,6 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const endpoint1Input = document.getElementById("endpoint1");
   const endpoint2Input = document.getElementById("endpoint2");
+  const tabSelect1 = document.getElementById("tabSelect1");
+  const tabSelect2 = document.getElementById("tabSelect2");
   const compareBtn = document.getElementById("compareBtn");
   const response1Div = document.getElementById("response1");
   const response2Div = document.getElementById("response2");
@@ -12,6 +14,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const endpoints = data.endpoints || [];
     if (endpoints.length > 0) endpoint1Input.value = endpoints[0];
     if (endpoints.length > 1) endpoint2Input.value = endpoints[1];
+  });
+
+  // Populate tab dropdowns with matching tabs
+  chrome.storage.sync.get('domains', (data) => {
+    const domains = data.domains || [];
+    const hasWildcard = domains.includes('*');
+
+    chrome.tabs.query({ currentWindow: true }, (tabs) => {
+      const apiTabs = hasWildcard ? tabs : tabs.filter(tab => {
+        try {
+          const url = new URL(tab.url);
+          // Match hostname against regex patterns
+          return domains.some(pattern => {
+            try {
+              const regex = new RegExp(pattern);
+              return regex.test(url.hostname);
+            } catch (e) {
+              console.error(`Invalid regex pattern: ${pattern}`);
+              return false;
+            }
+          });
+        } catch (e) {
+          return false;
+        }
+      });
+
+      // Populate dropdowns
+      apiTabs.forEach(tab => {
+        const option1 = document.createElement('option');
+        option1.value = tab.url;
+        option1.textContent = `${tab.title} (${tab.url})`;
+        tabSelect1.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = tab.url;
+        option2.textContent = `${tab.title} (${tab.url})`;
+        tabSelect2.appendChild(option2);
+      });
+
+      // Log for debugging
+      console.log('Selected tabs:', apiTabs);
+    });
+  });
+
+  // Update input fields when a tab is selected
+  tabSelect1.addEventListener('change', () => {
+    endpoint1Input.value = tabSelect1.value || '';
+  });
+  tabSelect2.addEventListener('change', () => {
+    endpoint2Input.value = tabSelect2.value || '';
   });
 
   // Compare button click handler
@@ -54,6 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add click-to-copy
       response1Div.addEventListener("click", () => navigator.clipboard.writeText(text1));
       response2Div.addEventListener("click", () => navigator.clipboard.writeText(text2));
+
+      // Save endpoints
+      chrome.storage.local.set({ endpoints: [url1, url2] });
     } catch (error) {
       errorDiv.textContent = `Error: ${error.message}`;
     }
