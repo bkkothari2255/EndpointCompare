@@ -80,3 +80,24 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## 👨‍💻 Author
+
+Created with ❤️ by Bhavik Kothari
+
+## 🌟 Support
+
+If you find this extension helpful, please:
+- ⭐ Star this repository
+- 🐛 Report bugs via [Issues](../../issues)
+- 💡 Suggest features via [Issues](../../issues)
+- 📢 Share with others who might find it useful
+
+## 📧 Contact
+
+- GitHub: [@bkkothari2255](https://github.com/bkkothari2255)
+- LinkedIn: [Bhavik Kothari](https://www.linkedin.com/in/bkkothari2255/)
+
+---
+
+**Disclaimer**: This extension is not affiliated with, endorsed by, or officially connected with any third-party API providers or services. All trademarks belong to their respective owners.
