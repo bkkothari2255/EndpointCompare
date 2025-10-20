@@ -64,6 +64,10 @@ For production, publish to the Chrome Web Store after testing.
 - jsdiff for response comparison
 - CSS for diff visualization
 
+
+## Dependencies
+- [jsdiff](https://github.com/kpdecker/jsdiff): Used for computing and displaying response differences (assets/diff.min.js).
+
 ### Building
 No build step required for MVP. For minification or testing, install dependencies with `npm install` and run scripts from `package.json`.
 
