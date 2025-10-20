@@ -4,7 +4,7 @@ Compare API responses instantly — right in your browser.
 ![EndpointCompare Demo](images/demo.png)
 
 
-EndpointCompare is a Chrome browser extension for developers to compare responses from two API endpoints (JSON or XML) directly in the browser. It allows users to input or detect API URLs, fetch responses, and view differences side-by-side with highlighted changes.
+EndpointCompare is a Chrome & Firefox browser extension for developers to compare responses from two API endpoints (JSON or XML) directly in the browser. It allows users to input or detect API URLs, fetch responses, and view differences side-by-side with highlighted changes.
 
 ## Why EndpointCompare?
 Manually comparing API responses wastes time — copying JSON into online tools breaks flow and privacy.  
@@ -12,7 +12,7 @@ EndpointCompare brings fast, local, and visual diffing into your browser.
 
 
 ## Features
-EndpointCompare simplifies debugging and validation by making it easy to compare API responses directly in Chrome.
+EndpointCompare simplifies debugging and validation by making it easy to compare API responses directly in Chrome & Firefox.
 
 
 ### Core Features (MVP)

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Populate tab dropdowns with matching tabs
-  chrome.storage.sync.get('domains', (data) => {
+  chrome.storage.local.get('domains', (data) => {
     const domains = data.domains || [];
     const hasWildcard = domains.includes('*');
 
@@ -100,8 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       // Display responses with diff highlights
-      response1Div.innerHTML = formatDiff(diff, "left");
-      response2Div.innerHTML = formatDiff(diff, "right");
+      while (response1Div.firstChild) response1Div.removeChild(response1Div.firstChild);
+      while (response2Div.firstChild) response2Div.removeChild(response2Div.firstChild);
+      formatDiff(diff, "left").forEach(node => response1Div.appendChild(node));
+      formatDiff(diff, "right").forEach(node => response2Div.appendChild(node));
 
       // Add click-to-copy
       response1Div.addEventListener("click", () => navigator.clipboard.writeText(text1));
@@ -132,17 +134,23 @@ function formatResponse(data, contentType) {
   return String(data);
 }
 
-// Format diff output
+// Format diff output as DOM nodes
 function formatDiff(diff, side) {
-  let html = "";
+  const nodes = [];
   diff.forEach((part) => {
     const color = part.added ? "green" : part.removed ? "red" : "grey";
-    const text = part.value.replace(/\n/g, "<br>");
-    if (side === "left" && !part.added) {
-      html += `<span style="background-color: ${color}">${text}</span>`;
-    } else if (side === "right" && !part.removed) {
-      html += `<span style="background-color: ${color}">${text}</span>`;
+    if (side === "left" && !part.added || side === "right" && !part.removed) {
+      const lines = part.value.split('\n');
+      lines.forEach((line, index) => {
+        if (line || index === lines.length - 1) { // Skip empty lines except last
+          const span = document.createElement('span');
+          span.style.backgroundColor = color;
+          span.textContent = line;
+          nodes.push(span);
+          if (index < lines.length - 1) nodes.push(document.createElement('br'));
+        }
+      });
     }
   });
-  return html;
+  return nodes;
 }

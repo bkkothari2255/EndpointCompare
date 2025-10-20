@@ -11,9 +11,12 @@
     "tabs",
     "clipboardWrite"
   ],
-  "options_page": "src/options/options.html",
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
   "background": {
-    "service_worker": "src/background.js"
+    "scripts": ["src/background.js"]
   },
   "action": {
     "default_popup": "src/popup/popup.html"
@@ -29,5 +32,11 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "endpointcompare@bkkothari2255.invalid",
+      "strict_min_version": "109.0"
+    }
   }
 }
